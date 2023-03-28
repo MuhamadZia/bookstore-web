@@ -1,7 +1,7 @@
 {
   "name": "bookstore-web",
   "version": "1.0.0",
-  "description": "",
+  "description": "- npm init -y\r - npm i express pg sequelize sequelize-cli dotenv ejs nodemon\r - npx sequelize-cli init\r - npx sequelize-cli db:create\r - npx sequelize-cli db:migrate",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
