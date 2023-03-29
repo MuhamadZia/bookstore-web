@@ -3,8 +3,8 @@ const {author} = require('../models')
 class AuthorController{
     static async getAuthor(req,res){
         try{
-            let result = await author.findAll()
-            res.render('author/index.ejs', {result})
+            let authors = await author.findAll()
+            res.json(authors)
         }
         catch(err){
             res.json(err)
@@ -25,11 +25,11 @@ class AuthorController{
     static async delete(req, res) {
         try {
             const id = +req.params.id
-            let result = await book.destroy({
+            let result = await author.destroy({
                 where : {id}
             })
 
-            let resultBookGenre = await book_genre.destroy(
+            let resultBookGenre = await author_book.destroy(
                 {
                     where: {book_id}
                 }
@@ -53,8 +53,8 @@ class AuthorController{
                 where : {id}
             })
 
-            result == 1 ? res.json("Book Telah Terubah") : res.json({
-                message: "Book Belum Terubah"
+            result == 1 ? res.json("Author Telah Terubah") : res.json({
+                message: "Author Belum Terubah"
             })
         } catch (err) {
             res.json(err);
