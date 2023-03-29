@@ -16,7 +16,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       author_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        // unique: true
       },
       country_code: {
         type: Sequelize.STRING

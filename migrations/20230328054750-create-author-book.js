@@ -10,10 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       author_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        // unique: true
       },
       book_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        // unique: true
       },
       createdAt: {
         allowNull: false,

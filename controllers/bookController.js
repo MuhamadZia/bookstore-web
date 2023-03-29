@@ -1,8 +1,18 @@
-const {book} = require('../models')
+const {book, author, author_book} = require('../models')
 
 class BookController{
     static async getBooks(req, res){
         try{
+            let books = await book.findAll({
+                include:[{
+                    model: author,
+                    attributes: ['name','author_id'],
+                    through: {
+                        attributes: []
+                    }
+                }]
+            })
+            res.json(books)
             let result = await book.findAll({
                 // include:[{
                 //     model: book_genre,
@@ -32,6 +42,20 @@ class BookController{
                 }
             )
             res.json(result)
+            //add to junc table
+            let author_id_filtered = await author.findOne({
+                where: {
+                    name: name_author
+                },
+                attributes: ['id']
+            })
+            // console.log(author_id_filtered.toJSON().id)
+            author_id_filtered = author_id_filtered.toJSON().id
+            console.log(Number(req.params.id))
+            // await author_book.create({
+            //     author_id: author_id_filtered,
+            //     book_id: req.params.id
+            // })
         }
         catch(err){
             res.json(err)
