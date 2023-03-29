@@ -1,9 +1,7 @@
 const route = require('express').Router()
 
 route.get('/', (req, res) => {
-    res.json({
-        messaga : "Bookstore First Page"
-    })
+    res.render('index.ejs')
 })
 
 const authorRoutes = require('./author')

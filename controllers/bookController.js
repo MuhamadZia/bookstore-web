@@ -13,7 +13,7 @@ class BookController{
                 //   }]
             }
             )
-            res.json(result)
+            res.render("book/index.ejs", {result})
         }
         catch(err){
             res.json(err)

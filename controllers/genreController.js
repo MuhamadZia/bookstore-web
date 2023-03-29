@@ -4,7 +4,7 @@ class BookController{
     static async getGenre(req, res){
         try{
             let result = await genre.findAll();
-            res.json(result);
+            res.render('genre/index.ejs', {result})
         }
         catch(err){
             res.json(err)
