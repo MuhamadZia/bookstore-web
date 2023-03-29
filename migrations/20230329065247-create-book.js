@@ -16,7 +16,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       book_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        // unique: true
       },
       pages: {
         type: Sequelize.INTEGER
