@@ -16,6 +16,17 @@ class BookController{
             // }
             )
             res.json(books)
+            let result = await book.findAll({
+                // include:[{
+                //     model: book_genre,
+                //     through: {
+                //       attributes: ['book_id','genre_id'],
+                //       where: {completed: true}
+                //     }
+                //   }]
+            }
+            )
+            res.render("book/index.ejs", {result})
         }
         catch(err){
             res.json(err)

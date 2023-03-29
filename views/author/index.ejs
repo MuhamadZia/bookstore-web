@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../layouts/head.ejs'); %>
+  </head>
+
+  <body class="container">
+    <header><%- include('../layouts/header.ejs')%></header>
+
+    <main>
+      <div class="jumbotron">
+        <h1>This is Author</h1>
+        <p>Find Author You Like</p>
+
+        <h2>Author : </h2>
+        <ul class="navbar-nav mr-auto">
+          <% result.forEach(function(result) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/book_genre"><%= result.name %></a>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+    </main>
+
+    <footer><%- include('../layouts/footer.ejs')%></footer>
+  </body>
+</html>

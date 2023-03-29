@@ -3,8 +3,8 @@ const {author} = require('../models')
 class AuthorController{
     static async getAuthor(req,res){
         try{
-            let authors = await author.findAll()
-            res.json(authors)
+            let result = await author.findAll()
+            res.render('author/index.ejs', {result})
         }
         catch(err){
             res.json(err)
