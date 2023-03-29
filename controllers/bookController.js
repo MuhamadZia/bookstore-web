@@ -30,15 +30,15 @@ class BookController{
                 where: {
                     name: name_author
                 },
-                attributes: ['author_id']
+                attributes: ['id']
             })
-
-            author_id_filtered = author_id_filtered.toJSON().author_id
-            console.log(author_id_filtered)
-            await author_book.create({
-                author_id: author_id_filtered,
-                book_id: book_id
-            })
+            // console.log(author_id_filtered.toJSON().id)
+            author_id_filtered = author_id_filtered.toJSON().id
+            console.log(Number(req.params.id))
+            // await author_book.create({
+            //     author_id: author_id_filtered,
+            //     book_id: req.params.id
+            // })
         }
         catch(err){
             res.json(err)
