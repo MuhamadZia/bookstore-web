@@ -3,12 +3,43 @@ const {author} = require('../models')
 class AuthorController{
     static async getAuthor(req,res){
         try{
-            let authors = await author.findAll()
-            res.json(authors)
+
+            let result = await author.findAll()
+            // res.json(result)
+            
+            res.render('author/index.ejs', {result})
+                
         }
         catch(err){
             res.json(err)
         }
+    }
+    static async getInformation(req,res){
+        try{
+            const id = Number(req.params.id)
+            let result = await author.findByPk(id)
+            res.json(result)
+            // return result
+        }
+        catch(err){
+            res.json(err)
+        }
+    }
+    static async updatePage(req,res){
+        try{
+            // let result = await this.getInformation(req,res)
+            const id = Number(req.params.id)
+            let result = await author.findByPk(id)
+            // console.log(result)
+            // res.json(result)
+            res.render('author/updatePage.ejs',{author_data:result})
+        }
+        catch(err){
+            res.json(err)
+        }         
+    }
+    static addPage(req,res){
+        res.render('author/addPage.ejs') //refere to file location
     }
     static async create(req, res){
         try{
@@ -16,7 +47,8 @@ class AuthorController{
             let result = await author.create({
                 name, gender, author_id, country_code
             })
-            res.json(result)
+            // res.json(result)
+            res.redirect('/author') //redirect to link
         }
         catch(err){
             res.json(err)
@@ -29,12 +61,7 @@ class AuthorController{
                 where : {id}
             })
 
-            let resultBookGenre = await author_book.destroy(
-                {
-                    where: {book_id}
-                }
-            )
-            res.json(result)
+            res.redirect('/author')
             
         } catch (err) {
             res.json(err)
@@ -45,17 +72,18 @@ class AuthorController{
     static async update(req,res) {
         try {
             const id = +req.params.id;
-            const{name, price, book_id, pages, rating} = req.body;
-            let result = await book.update(
+            const{name, gender, author_id, country_code} = req.body;
+            let result = await author.update(
                 {
-                    name, price, book_id, pages, rating
+                    name, gender, author_id, country_code
                 },{
                 where : {id}
             })
 
-            result == 1 ? res.json("Author Telah Terubah") : res.json({
+            result == 1 ? res.redirect('/author') : res.json({
                 message: "Author Belum Terubah"
             })
+
         } catch (err) {
             res.json(err);
         }
