@@ -22,8 +22,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   book_genre.init({
-    book_id: DataTypes.INTEGER,
-    genre_id: DataTypes.INTEGER
+    book_id: {type: DataTypes.INTEGER,
+    validate: {
+        notEmpty: {
+          message: "Book ID can not be empty."
+        }
+      }},
+    genre_id: {type: DataTypes.INTEGER,
+    validate: {
+        notEmpty: {
+          message: "Genre ID can not be empty."
+        }
+      }}
   }, {
     sequelize,
     modelName: 'book_genre',

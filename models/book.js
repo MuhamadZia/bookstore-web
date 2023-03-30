@@ -19,11 +19,36 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   book.init({
-    name: DataTypes.STRING,
-    price: DataTypes.STRING,
-    book_id: DataTypes.INTEGER,
-    pages: DataTypes.INTEGER,
-    rating: DataTypes.STRING
+    name: {type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          message: "Name can not be empty."
+        }
+      }},
+    price: {type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          message: "Price can not be empty."
+        }
+      }},
+    book_id: {type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          message: "Book ID can not be empty."
+        }
+      }},
+    pages: {type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          message: "Pages can not be empty."
+        }
+      }},
+    rating: {type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          message: "Rating can not be empty."
+        }
+      }}
   }, {
     sequelize,
     modelName: 'book',

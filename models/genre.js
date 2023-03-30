@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class genre extends Model {
     /**
@@ -15,14 +13,32 @@ module.exports = (sequelize, DataTypes) => {
         through: models.book_genre,
         foreignKey: "genre_id",
         otherKey: "book_id",
-      });    }
+      });
+    }
   }
-  genre.init({
-    name: DataTypes.STRING,
-    genre_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'genre',
-  });
+  genre.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            message: "Name can not be empty.",
+          },
+        },
+      },
+      genre_id: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: {
+            message: "Genre ID can not be empty.",
+          },
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: "genre",
+    }
+  );
   return genre;
 };

@@ -19,10 +19,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   author.init({
-    name: DataTypes.STRING,
-    gender: DataTypes.STRING,
-    author_id: DataTypes.INTEGER,
-    country_code: DataTypes.STRING
+    name: {type: DataTypes.STRING,
+    validate: {
+        notEmpty: {
+          message: "Name can not be empty."
+        }
+      }},
+    gender: {type: DataTypes.STRING,
+    validate: {
+        notEmpty: {
+          message: "Gender can not be empty."
+        }
+      }},
+    author_id: {type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          message: "Author ID can not be empty."
+        }
+      }},
+    country_code:{type: DataTypes.STRING,
+    validate: {
+        notEmpty: {
+          message: "Country Code can not be empty."
+        }
+      }}
   }, {
     sequelize,
     modelName: 'author',
