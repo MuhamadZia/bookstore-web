@@ -24,11 +24,8 @@
               <tbody>
                 <%result.forEach(item => {%>
                   <tr>
-                    <td><a href="genre/information/<%= item.id%>">
-                      <%= item.id %>
-                    </a>
-                    </td>
-                    <td><%= item.name %></td>
+                    <td><%= item.id %></td>
+                    <td><a href="author/information/<%= item.id%>"><%= item.name %></a>
                     <td>
                       <a href="/genre/delete/<%= item.id%>">Delete</a>
                       <a href="/genre/update/<%= item.id%>">Update</a>

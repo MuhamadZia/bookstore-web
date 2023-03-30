@@ -1,0 +1,42 @@
+<%- include('../layouts/head.ejs'); %>
+<style>
+    div {
+    padding-left: 10px;
+    }
+</style>
+<main>
+  <div class="jumbotron">
+  <h2>Book with Genre : </h2>
+    <div>
+          <table class="table table-striped" id="myTable">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Pages</th>
+                <th>Rating</th>
+                <th>Price</th>
+              </tr>
+              <tbody>
+                <%result.forEach(item => {%>
+                  <tr>
+                    <td><%= item.book.id %></td>
+                    <td><%= item.book.name %></td>
+                    <td><%= item.book.pages %></td>
+                    <td><%= item.book.rating %></td>
+                    <td><%= item.book.price %></td>
+                  </tr>
+                <%})%>
+              </tbody>
+            </thead>
+          </table>
+        </div>
+      </div>
+  </main>
+<script>
+    function ShowDivAdd() {
+    document.getElementById("informationGenre").style.display = "";
+}
+</script>
+
+<%- include('../layouts/footer.ejs')%>

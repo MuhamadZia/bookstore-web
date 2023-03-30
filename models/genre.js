@@ -11,18 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      genre.belongsToMany(models.book, 
-        {
-          through:models.book_genre,
-          foreignKey:'genre_id',
-          otherKey:'book_id'
-        }
-        )
-    }
+      genre.belongsToMany(models.book, {
+        through: models.book_genre,
+        foreignKey: "genre_id",
+        otherKey: "book_id",
+      });    }
   }
   genre.init({
     name: DataTypes.STRING,
-    genre_id: DataTypes.STRING
+    genre_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'genre',

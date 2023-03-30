@@ -22,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   book_genre.init({
-    book_id: DataTypes.STRING,
-    genre_id: DataTypes.STRING
+    book_id: DataTypes.INTEGER,
+    genre_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'book_genre',

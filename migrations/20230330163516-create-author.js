@@ -2,17 +2,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('book_genres', {
+    await queryInterface.createTable('authors', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      book_id: {
+      name: {
         type: Sequelize.STRING
       },
-      genre_id: {
+      gender: {
+        type: Sequelize.STRING
+      },
+      author_id: {
+        type: Sequelize.INTEGER
+      },
+      country_code: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -26,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('book_genres');
+    await queryInterface.dropTable('authors');
   }
 };
