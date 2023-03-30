@@ -10,13 +10,26 @@ class BookController{
             res.json(err)
         }
     }
+    static async getInformation(req,res){
+        try{
+            const id = Number(req.params.id)
+            let result = await genre.findByPk(id)
+            res.json(result)
+        }
+        catch(err){
+            res.json(err)
+        }
+    }
+    static addPage(req,res){
+        res.render('genre/addPage.ejs') //refere to file location
+    }
     static async create(req, res){
         try{
             const {name, genre_id} = req.body;
             let result = await genre.create({
                 name, genre_id
             })
-            res.json(result);
+            res.redirect('/genre');
         }
         catch(err){
             res.json(err)
@@ -29,12 +42,26 @@ class BookController{
                 where : {id}
             })
 
-            result == 1 ? res.json("Genre Telah Terhapus") : res.json({
+            result == 1 ? res.redirect('/genre') : res.json({
                 message: "Genre Belum Terhapus"
             })
         } catch (err) {
             res.json(err);
         }
+    }
+
+    static async updatePage(req,res){
+        try{
+            // let result = await this.getInformation(req,res)
+            const id = Number(req.params.id)
+            let result = await genre.findByPk(id)
+            // console.log(result)
+            // res.json(result)
+            res.render('genre/updatePage.ejs',{result})
+        }
+        catch(err){
+            res.json(err)
+        }         
     }
 
     static async update(req,res) {
@@ -48,7 +75,7 @@ class BookController{
                 where : {id}
             })
 
-            result == 1 ? res.json("Genre Telah Terubah") : res.json({
+            result == 1 ? res.redirect("/genre") : res.json({
                 message: "Genre Belum Terubah"
             })
         } catch (err) {

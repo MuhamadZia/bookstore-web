@@ -8,10 +8,10 @@
     <header><%- include('../layouts/header.ejs')%></header>
     <main>
       <div class="jumbotron">
-        <h1>This is Author</h1>
-        <p>Find Author You Like</p>
+        <h1>This is Book</h1>
+        <p>Find Book You Like</p>
 
-        <h2>Author : </h2>
+        <h2>Book : </h2>
         <input type="text" onkeyup="searchTable()" id="myInput" placeholder="Search for names..">
         <div>
           <table class="table table-striped" id="myTable">
@@ -23,12 +23,14 @@
                 <th>Book id</th>
                 <th>Pages</th>
                 <th>Rating</th>
+                <th>Author</th>
+                <th>Genre</th>
                 <th>Action</th>
               </tr>
               <tbody>
                 <%result.forEach(item => {%>
                   <tr>
-                    <td><a href="">
+                    <td><a href="book/information/<%= item.id%>">
                       <%= item.id %>
                     </a>
                     </td>
@@ -37,9 +39,12 @@
                     <td><%= item.book_id %></td>
                     <td><%= item.pages %></td>
                     <td><%= item.rating %></td>
+                    <td><%= item.rating %></td>
+                    <td><%= item.rating %></td>
+
                     <td>
-                      <a href="">Delete</a>
-                      <a href="">Update</a>
+                      <a href="/book/delete/<%= item.id%>">Delete</a>
+                      <a href="/book/update/<%= item.id%>">Update</a>
                     </td>
                   </tr>
                 <%})%>
@@ -51,7 +56,7 @@
       </div>
     </main>
     <p>
-      <!-- click here to add author data <a href="/author/add">Add</a> -->
+      click here to add book data <a href="/book/add">Add</a>
     </p>
     <footer><%- include('../layouts/footer.ejs')%></footer>
   </body>

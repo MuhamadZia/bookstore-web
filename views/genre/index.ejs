@@ -6,23 +6,68 @@
 
   <body class="container">
     <header><%- include('../layouts/header.ejs')%></header>
-
     <main>
       <div class="jumbotron">
         <h1>This is Genre</h1>
         <p>Find Genre You Like</p>
 
         <h2>Genre : </h2>
-        <ul class="navbar-nav mr-auto">
-          <% result.forEach(function(result) { %>
-          <li class="nav-item">
-            <a class="nav-link" href="/book_genre"><%= result.name %></a>
-          </li>
-          <% }); %>
-        </ul>
+        <input type="text" onkeyup="searchTable()" id="myInput" placeholder="Search for names..">
+        <div>
+          <table class="table table-striped" id="myTable">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Genre</th>
+                <th>Action</th>
+              </tr>
+              <tbody>
+                <%result.forEach(item => {%>
+                  <tr>
+                    <td><a href="genre/information/<%= item.id%>">
+                      <%= item.id %>
+                    </a>
+                    </td>
+                    <td><%= item.name %></td>
+                    <td>
+                      <a href="/genre/delete/<%= item.id%>">Delete</a>
+                      <a href="/genre/update/<%= item.id%>">Update</a>
+                    </td>
+                  </tr>
+                <%})%>
+              </tbody>
+            </thead>
+          </table>
+        </div>
+        
       </div>
     </main>
-
+    <p>
+      click here to add genre data <a href="/genre/add">Add</a>
+    </p>
     <footer><%- include('../layouts/footer.ejs')%></footer>
   </body>
 </html>
+
+<script>
+  function searchTable() {
+    let input, filter, table, tr, td, i, txtValue
+    input = document.getElementById('myInput')
+    filter = input.value.toUpperCase()
+    table = document.getElementById('myTable')
+    tr = document.getElementsByTagName('tr')
+
+    for(let i=0; i<tr.length; i++){
+        td = tr[i].getElementsByTagName('td')[1]
+        if(td){
+            txtValue = td.textContent || tr.innerText
+            if(txtValue.toUpperCase().indexOf(filter) > -1){
+                tr[i].style.display =""
+            }
+            else{
+                tr[i].style.display = "none"
+            }
+        }
+    }
+}
+</script>
