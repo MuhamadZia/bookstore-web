@@ -1,10 +1,17 @@
-const {author} = require('../models')
+const {author, book} = require('../models')
 
 class AuthorController{
     static async getAuthor(req,res){
         try{
-
-            let result = await author.findAll()
+            let result = await author.findAll({
+                // include:[{
+                //     model: book,
+                //     attributes: ['id', 'name'],
+                //     through:{
+                //         attributes:[]
+                //     }
+                // }]
+            })
             // res.json(result)
             
             res.render('author/index.ejs', {result})

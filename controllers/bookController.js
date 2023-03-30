@@ -8,6 +8,7 @@ class BookController{
             }
             )
             res.render("book/index.ejs", {result})
+            // res.json(result)
         }
         catch(err){
             res.json(err)
@@ -35,17 +36,17 @@ class BookController{
 
             await book_genre.create(
                 {
-                    book_id, genre_id
+                    book_id:result.id, genre_id
                 }
             )
 
             await author_book.create(
                 {
                     author_id,
-                    book_id
+                    book_id:result.id
                 }
             )
-            res.json(result)
+            res.redirect('/book')
         }
         catch(err){
             res.json(err)
