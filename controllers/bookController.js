@@ -4,26 +4,7 @@ const { Op } = require("sequelize");
 class BookController{
     static async getBooks(req, res){
         try{
-            let books = await book.findAll(
-            //     {
-            //     include:[{
-            //         model: author,
-            //         attributes: ['name','author_id'],
-            //         through: {
-            //             attributes: []
-            //         }
-            //     }]
-            // }
-            )
-            res.json(books)
             let result = await book.findAll({
-                // include:[{
-                //     model: book_genre,
-                //     through: {
-                //       attributes: ['book_id','genre_id'],
-                //       where: {completed: true}
-                //     }
-                //   }]
             }
             )
             res.render("book/index.ejs", {result})
@@ -31,6 +12,19 @@ class BookController{
         catch(err){
             res.json(err)
         }
+    }
+    static async getInformation(req,res){
+        try{
+            const id = Number(req.params.id)
+            let result = await book.findByPk(id)
+            res.json(result)
+        }
+        catch(err){
+            res.json(err)
+        }
+    }
+    static addPage(req,res){
+        res.render('book/addPage.ejs') //refere to file location
     }
     static async create(req, res){
         try{
@@ -52,20 +46,6 @@ class BookController{
                 }
             )
             res.json(result)
-            //add to junc table
-            // let author_id_filtered = await author.findOne({
-            //     where: {
-            //         name: name_author
-            //     },
-            //     attributes: ['id']
-            // })
-            // // console.log(author_id_filtered.toJSON().id)
-            // author_id_filtered = author_id_filtered.toJSON().id
-            // console.log(Number(req.params.id))
-            // // await author_book.create({
-            // //     author_id: author_id_filtered,
-            // //     book_id: req.params.id
-            // // })
         }
         catch(err){
             res.json(err)
@@ -74,7 +54,6 @@ class BookController{
 
     static async delete(req, res) {
         try {
-            //get all required id there will be destroyed
             const id = +req.params.id
             let book_data = await book.findByPk(id)
             let book_id_filtered = book_data.book_id
@@ -97,12 +76,10 @@ class BookController{
                 return item.id
             })
 
-            //destroy row in book
             let result = await book.destroy({
                 where : {id}
             })
 
-            //destroy row/s in book_genre
             await book_genre.destroy(
                 {
                     where: {
@@ -111,7 +88,6 @@ class BookController{
                 }
             )
             
-            //destroy row/s in author_book
             await author_book.destroy(
                 {
                     where: {
@@ -128,6 +104,16 @@ class BookController{
         }
     }
 
+    static async updatePage(req,res){
+        try{
+            const id = Number(req.params.id)
+            let result = await book.findByPk(id)
+            res.render('book/updatePage.ejs',{result})
+        }
+        catch(err){
+            res.json(err)
+        }         
+    }
     static async update(req,res) {
         try {
             const id = +req.params.id;

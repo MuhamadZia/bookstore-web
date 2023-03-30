@@ -1,0 +1,49 @@
+<%- include('../layouts/head.ejs'); %>
+<style>
+    div {
+    padding-left: 10px;
+    }
+</style>
+<main>
+    <div class="jumbotron bg-light">
+        <h1>Edit Book</h1>
+    </div>
+
+    <div id="updateBook">
+        <form action="<%= result.id%>" method="post">
+            <div class="form-group">
+                <label for="">Name</label><br>
+                <input type="text" name="name" value="<%= result.name%>"><br>
+            </div>
+            <div class="form-group">
+                <label for="">Price</label><br>
+                <input type="text" name="gender" value="<%= result.price%>"><br>
+            </div>
+            <div class="form-group">
+                <label for="">Book Id</label><br>
+                <input type="text" name="author_id" value="<%= result.book_id%>"><br>
+            </div>
+            <div class="form-group">
+                <label for="">Pages</label><br>
+                <input type="text" name="country_code" value="<%= result.pages%>">
+            </div>
+            <div class="form-group">
+                <label for="">Rating</label><br>
+                <input type="text" name="country_code" value="<%= result.rating%>">
+            </div>
+            <div class="form-group">
+                <label for="">Author</label><br>
+                <input type="text" name="country_code" value="<%= result.rating%>">
+            </div>
+            <div class="form-group">
+                <label for="">Genre</label><br>
+                <input type="text" name="country_code" value="<%= result.rating%>">
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+<%- include('../layouts/footer.ejs')%>
