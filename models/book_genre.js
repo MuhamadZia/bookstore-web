@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       book_genre.belongsTo(models.book, {
         foreignKey:'book_id',
-        targetKey:'book_id'
+        targetKey:'book_id',
       })
       book_genre.belongsTo(models.genre, {
         foreignKey:'genre_id',

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         {
           through:models.author_book,
           foreignKey:'author_id',
-          // otherKey:'author_id'
+          uniqueKey:'book_id',
         }
         )
     }

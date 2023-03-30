@@ -10,6 +10,10 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     // await queryInterface.removeColumn('books','genre')
+    await queryInterface.changeColumn('book','book_id', {
+      type: 'INTEGER USING CAST("book_id" as INTEGER)',
+      allowNull: false
+    })
   },
 
   async down (queryInterface, Sequelize) {
@@ -20,5 +24,6 @@ module.exports = {
      * await queryInterface.dropTable('users');
      */
     // await queryInterface.dropTable('books')
+    await queryInterface.changeColumn('book','book_id')
   }
 };
