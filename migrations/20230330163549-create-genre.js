@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('authors', {
+    await queryInterface.createTable('genres', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,15 +12,8 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      gender: {
-        type: Sequelize.STRING
-      },
-      author_id: {
-        type: Sequelize.STRING,
-        // unique: true
-      },
-      country_code: {
-        type: Sequelize.STRING
+      genre_id: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -33,6 +26,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('authors');
+    await queryInterface.dropTable('genres');
   }
 };

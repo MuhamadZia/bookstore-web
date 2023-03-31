@@ -1,9 +1,11 @@
-const {book_genre} = require('../models')
+const {book_genre, book, genre} = require('../models')
 
 class BookGenreController{
     static async getBookGenre(req, res){
         try{
-            let result = await book_genre.findAll();
+            let result = await book_genre.findAll({
+                include:[book, genre]
+            });
             res.json(result);
         }
         catch(err){

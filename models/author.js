@@ -11,20 +11,38 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      author.belongsToMany(models.book, 
-        {
-          through:models.author_book,
-          foreignKey:'author_id',
-          // otherKey:'author_id'
-        }
-        )
+      author.belongsToMany(models.book, {
+        through: models.author_book,
+        foreignKey: "author_id",
+        otherKey: "book_id",
+      });
     }
   }
   author.init({
-    name: DataTypes.STRING,
-    gender: DataTypes.STRING,
-    author_id: DataTypes.STRING,
-    country_code: DataTypes.STRING
+    name: {type: DataTypes.STRING,
+    validate: {
+        notEmpty: {
+          message: "Name can not be empty."
+        }
+      }},
+    gender: {type: DataTypes.STRING,
+    validate: {
+        notEmpty: {
+          message: "Gender can not be empty."
+        }
+      }},
+    author_id: {type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          message: "Author ID can not be empty."
+        }
+      }},
+    country_code:{type: DataTypes.STRING,
+    validate: {
+        notEmpty: {
+          message: "Country Code can not be empty."
+        }
+      }}
   }, {
     sequelize,
     modelName: 'author',

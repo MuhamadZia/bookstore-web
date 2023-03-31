@@ -27,11 +27,10 @@
               <tbody>
                 <%result.forEach(item => {%>
                   <tr>
-                    <td><a href="author/information/<%= item.id%>">
-                      <%= item.id %>
-                    </a>
+                    
                     </td>
-                    <td><%= item.name %></td>
+                    <td><%= item.id %></td>
+                    <td><a href="author/information/<%= item.id%>"><%= item.name %></a>
                     <td><%= item.gender %></td>
                     <td><%= item.author_id %></td>
                     <td><%= item.country_code %></td>
